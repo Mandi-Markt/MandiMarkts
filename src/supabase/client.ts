@@ -3,24 +3,18 @@ import { createClient } from "@supabase/supabase-js";
 function normalizeSupabaseUrl(raw: string) {
   const trimmed = raw.trim();
   if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
-  // Many people paste only the project ref; convert to full URL.
   return `https://${trimmed}.supabase.co`;
 }
 
-export function supabaseServer() {
+export function supabaseBrowser() {
   const urlRaw = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!urlRaw || !key) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.",
-    );
+    throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY.");
   }
 
   const url = normalizeSupabaseUrl(urlRaw);
-
-  return createClient(url, key, {
-    auth: { persistSession: false },
-  });
+  return createClient(url, key);
 }
 

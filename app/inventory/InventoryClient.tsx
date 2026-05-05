@@ -6,8 +6,7 @@ type Product = {
   id: string | number;
   name: string;
   stock: number | null;
-  retail_price: number | null;
-  wholesale_price: number | null;
+  price: number | null;
 };
 
 function formatINR(value: number | null) {
@@ -51,8 +50,9 @@ export default function InventoryClient({ initialItems }: { initialItems: Produc
               id="search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
+              autoFocus
               placeholder="Type item name…"
-              className="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-4 text-2xl outline-none focus:ring-4 focus:ring-emerald-500/50"
+              className="w-full rounded-xl border-2 border-green-700 bg-zinc-950 px-4 py-4 text-2xl font-bold outline-none focus:ring-4 focus:ring-green-500/60"
             />
           </div>
         </div>
@@ -64,15 +64,14 @@ export default function InventoryClient({ initialItems }: { initialItems: Produc
                 <tr className="text-xl">
                   <th className="px-5 py-4">Item Name</th>
                   <th className="px-5 py-4">Stock</th>
-                  <th className="px-5 py-4">Retail Price</th>
-                  <th className="px-5 py-4">Wholesale Price</th>
+                  <th className="px-5 py-4">Price</th>
                   <th className="px-5 py-4">WhatsApp Bill</th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.map((p) => {
-                  const retail = formatINR(p.retail_price);
-                  const msg = `Item: ${p.name}\nRetail Price: ${retail}`;
+                  const price = formatINR(p.price);
+                  const msg = `Item: ${p.name}\nPrice: ${price}`;
 
                   return (
                     <tr key={String(p.id)} className="border-t border-zinc-800">
@@ -80,13 +79,12 @@ export default function InventoryClient({ initialItems }: { initialItems: Produc
                       <td className="px-5 py-5 text-2xl font-bold">
                         {p.stock ?? "—"}
                       </td>
-                      <td className="px-5 py-5 text-2xl font-bold">{retail}</td>
                       <td className="px-5 py-5 text-2xl font-bold">
-                        {formatINR(p.wholesale_price)}
+                        {price}
                       </td>
                       <td className="px-5 py-5">
                         <a
-                          className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-4 text-xl font-extrabold text-black hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/50"
+                          className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-4 text-xl font-extrabold text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-500/60"
                           href={whatsappUrl(msg)}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -100,7 +98,7 @@ export default function InventoryClient({ initialItems }: { initialItems: Produc
 
                 {filtered.length === 0 && (
                   <tr>
-                    <td className="px-5 py-10 text-2xl text-zinc-200" colSpan={5}>
+                    <td className="px-5 py-10 text-2xl text-zinc-200" colSpan={4}>
                       No items match “{q}”.
                     </td>
                   </tr>

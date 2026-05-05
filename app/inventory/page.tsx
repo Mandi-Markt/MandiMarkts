@@ -57,15 +57,9 @@ export default async function InventoryPage() {
 
       const stock = toNumber(pickFirst(row, ["stock", "qty", "quantity", "in_stock"]));
 
-      const retail_price = toNumber(
-        pickFirst(row, ["retail_price", "retailPrice", "mrp", "price", "selling_price"]),
-      );
+      const price = toNumber(pickFirst(row, ["price", "selling_price", "retail_price", "mrp"]));
 
-      const wholesale_price = toNumber(
-        pickFirst(row, ["wholesale_price", "wholesalePrice", "cost_price", "cost", "buy_price"]),
-      );
-
-      return { id, name, stock, retail_price, wholesale_price };
+      return { id, name, stock, price };
     })
     .sort((a, b) => a.name.localeCompare(b.name));
 

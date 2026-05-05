@@ -1,11 +1,11 @@
 {
-  "name": "MandiLink",
-  "short_name": "MandiLink",
-  "description": "Wholesaler se Retailer tak",
+  "name": "MandiMarkt",
+  "short_name": "MandiMarkt",
+  "description": "Simple ordering for rural shops",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0d1117",
-  "theme_color": "#15803d",
+  "theme_color": "#166534",
   "icons": [
     {
       "src": "/globe.svg",
