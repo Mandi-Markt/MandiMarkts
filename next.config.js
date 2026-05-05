@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Keep config explicit for this Next.js setup.
+  // Pin Turbopack workspace root so Vercel doesn't infer it from parent lockfiles.
+  turbopack: {
+    root: process.cwd(),
+  },
 };
 
 export default nextConfig;
