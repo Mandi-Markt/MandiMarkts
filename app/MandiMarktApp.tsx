@@ -93,7 +93,7 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="text-4xl font-extrabold tracking-tight text-lime-300">MandiMarkt</h1>
-            <p className="mt-1 text-xl text-green-100">Search -> add -> print bill.</p>
+            <p className="mt-1 text-xl text-green-100">Search -&gt; add -&gt; print bill.</p>
           </div>
 
           <div className="w-full sm:max-w-lg">
