@@ -3,21 +3,31 @@ import { supabaseServer } from "@/src/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-type ProductRow = {
-  id: string | number;
-  name: string;
-  stock: number | null;
-  retail_price: number | null;
-  wholesale_price: number | null;
-};
+type AnyRow = Record<string, unknown>;
+
+function pickFirst<T>(row: AnyRow, keys: string[]): T | null {
+  for (const k of keys) {
+    if (row[k] !== undefined && row[k] !== null) return row[k] as T;
+  }
+  return null;
+}
+
+function toNumber(value: unknown): number | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  if (typeof value === "string") {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+}
 
 export default async function InventoryPage() {
   const supabase = supabaseServer();
 
   const { data, error } = await supabase
     .from("products")
-    .select("id,name,stock,retail_price,wholesale_price")
-    .order("name", { ascending: true });
+    .select("*");
 
   if (error) {
     return (
@@ -33,6 +43,32 @@ export default async function InventoryPage() {
     );
   }
 
-  return <InventoryClient initialItems={(data ?? []) as ProductRow[]} />;
+  const rows = (data ?? []) as AnyRow[];
+
+  const normalized = rows
+    .map((row) => {
+      const id =
+        pickFirst<string | number>(row, ["id", "product_id", "sku", "code"]) ??
+        crypto.randomUUID();
+
+      const name =
+        pickFirst<string>(row, ["name", "item_name", "product_name", "title"]) ??
+        "Unnamed item";
+
+      const stock = toNumber(pickFirst(row, ["stock", "qty", "quantity", "in_stock"]));
+
+      const retail_price = toNumber(
+        pickFirst(row, ["retail_price", "retailPrice", "mrp", "price", "selling_price"]),
+      );
+
+      const wholesale_price = toNumber(
+        pickFirst(row, ["wholesale_price", "wholesalePrice", "cost_price", "cost", "buy_price"]),
+      );
+
+      return { id, name, stock, retail_price, wholesale_price };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return <InventoryClient initialItems={normalized} />;
 }
 
