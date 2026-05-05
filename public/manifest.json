@@ -1,12 +1,11 @@
 {
   "name": "MandiLink",
   "short_name": "MandiLink",
-  "description": "Wholesaler se Retailer tak — Digital Connection",
+  "description": "Wholesaler se Retailer tak",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0d1117",
-  "theme_color": "#e8640a",
-  "orientation": "portrait",
+  "theme_color": "#15803d",
   "icons": [
     {
       "src": "/icons/icon-192.png",
