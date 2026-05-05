@@ -88,12 +88,12 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-green-950 text-green-50">
       <div className="mx-auto max-w-6xl px-5 py-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-4xl font-extrabold tracking-tight">MandiMarkt</h1>
-            <p className="mt-1 text-xl text-zinc-200">Search → add → print bill.</p>
+            <h1 className="text-4xl font-extrabold tracking-tight text-lime-300">MandiMarkt</h1>
+            <p className="mt-1 text-xl text-green-100">Search -> add -> print bill.</p>
           </div>
 
           <div className="w-full sm:max-w-lg">
@@ -106,16 +106,16 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
               onChange={(e) => setQ(e.target.value)}
               autoFocus
               placeholder="Type item name…"
-              className="w-full rounded-xl border-2 border-green-700 bg-zinc-950 px-4 py-4 text-2xl font-bold outline-none focus:ring-4 focus:ring-green-500/60"
+              className="w-full rounded-xl border-2 border-lime-400 bg-green-900 px-4 py-4 text-2xl font-bold text-green-50 placeholder:text-green-200/80 outline-none focus:ring-4 focus:ring-lime-300"
             />
           </div>
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-[1fr,420px]">
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 overflow-hidden">
+          <div className="rounded-2xl border-2 border-green-600 bg-green-900/70 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="bg-zinc-900">
+                <thead className="bg-green-800 text-lime-200">
                   <tr className="text-xl">
                     <th className="px-5 py-4">Item</th>
                     <th className="px-5 py-4">Price</th>
@@ -128,7 +128,7 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
                     const price = p.price ?? null;
                     const canAdd = price != null && price > 0;
                     return (
-                      <tr key={String(p.id)} className="border-t border-zinc-800">
+                      <tr key={String(p.id)} className="border-t border-green-700">
                         <td className="px-5 py-5 text-2xl font-extrabold">{p.name}</td>
                         <td className="px-5 py-5 text-2xl font-bold">
                           {price == null ? "—" : formatINR(price)}
@@ -138,7 +138,7 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
                           <button
                             disabled={!canAdd}
                             onClick={() => addOne(p)}
-                            className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-4 text-xl font-extrabold text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-500/60 disabled:opacity-40 disabled:hover:bg-green-600"
+                            className="inline-flex items-center justify-center rounded-xl bg-lime-400 px-5 py-4 text-xl font-extrabold text-green-950 hover:bg-lime-300 focus:outline-none focus:ring-4 focus:ring-lime-300 disabled:opacity-40 disabled:hover:bg-lime-400"
                           >
                             + Add
                           </button>
@@ -149,7 +149,7 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
 
                   {filtered.length === 0 && (
                     <tr>
-                      <td className="px-5 py-10 text-2xl text-zinc-200" colSpan={4}>
+                      <td className="px-5 py-10 text-2xl text-green-100" colSpan={4}>
                         No items match “{q}”.
                       </td>
                     </tr>
@@ -158,14 +158,14 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
               </table>
             </div>
 
-            <div className="px-5 py-4 text-xl text-zinc-200 bg-zinc-900/40">
-              Showing <span className="font-extrabold text-white">{filtered.length}</span> items
+            <div className="px-5 py-4 text-xl text-green-100 bg-green-900/50">
+              Showing <span className="font-extrabold text-lime-300">{filtered.length}</span> items
             </div>
           </div>
 
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-5">
-            <div className="text-2xl font-extrabold">Cart</div>
-            <p className="mt-1 text-xl text-zinc-200">Buyer can add only name on bill.</p>
+          <div className="rounded-2xl border-2 border-green-600 bg-green-900/70 p-5">
+            <div className="text-2xl font-extrabold text-lime-300">Cart</div>
+            <p className="mt-1 text-xl text-green-100">Buyer can add only name on bill.</p>
 
             <div className="mt-4 grid gap-3">
               <div>
@@ -177,7 +177,7 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
                   value={buyerName}
                   onChange={(e) => setBuyerName(e.target.value)}
                   placeholder="Name…"
-                  className="w-full rounded-xl border-2 border-green-700 bg-zinc-950 px-4 py-3 text-xl outline-none focus:ring-4 focus:ring-green-500/60"
+                  className="w-full rounded-xl border-2 border-lime-400 bg-green-900 px-4 py-3 text-xl text-green-50 placeholder:text-green-200/80 outline-none focus:ring-4 focus:ring-lime-300"
                 />
               </div>
 
@@ -190,31 +190,31 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
                   value={shopName}
                   onChange={(e) => setShopName(e.target.value)}
                   placeholder="Shop…"
-                  className="w-full rounded-xl border-2 border-green-700 bg-zinc-950 px-4 py-3 text-xl outline-none focus:ring-4 focus:ring-green-500/60"
+                  className="w-full rounded-xl border-2 border-lime-400 bg-green-900 px-4 py-3 text-xl text-green-50 placeholder:text-green-200/80 outline-none focus:ring-4 focus:ring-lime-300"
                 />
               </div>
             </div>
 
-            <div className="mt-4 divide-y divide-zinc-800 rounded-xl border border-zinc-800 overflow-hidden">
+            <div className="mt-4 divide-y divide-green-700 rounded-xl border border-green-700 overflow-hidden">
               {lines.length === 0 ? (
-                <div className="p-4 text-xl text-zinc-200">Cart is empty.</div>
+                <div className="p-4 text-xl text-green-100">Cart is empty.</div>
               ) : (
                 lines.map((l) => (
                   <div key={l.id} className="p-4 flex items-center gap-3">
                     <div className="flex-1">
                       <div className="text-xl font-extrabold">{l.name}</div>
-                      <div className="text-lg text-zinc-200">{formatINR(l.price)}</div>
+                      <div className="text-lg text-green-100">{formatINR(l.price)}</div>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
-                        className="h-11 w-11 rounded-xl border border-zinc-700 bg-zinc-950 text-2xl font-extrabold"
+                        className="h-11 w-11 rounded-xl border border-green-500 bg-green-950 text-2xl font-extrabold"
                         onClick={() => setQty(l.id, l.qty - 1)}
                       >
                         −
                       </button>
                       <div className="w-12 text-center text-2xl font-extrabold">{l.qty}</div>
                       <button
-                        className="h-11 w-11 rounded-xl bg-green-600 text-2xl font-extrabold text-white"
+                        className="h-11 w-11 rounded-xl bg-lime-400 text-2xl font-extrabold text-green-950"
                         onClick={() => setQty(l.id, l.qty + 1)}
                       >
                         +
@@ -225,16 +225,16 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
               )}
             </div>
 
-            <div className="mt-4 flex items-center justify-between rounded-xl bg-zinc-900 px-4 py-3">
+            <div className="mt-4 flex items-center justify-between rounded-xl bg-green-800 px-4 py-3">
               <div className="text-xl font-extrabold">Total</div>
-              <div className="text-2xl font-extrabold">{formatINR(total)}</div>
+              <div className="text-2xl font-extrabold text-lime-300">{formatINR(total)}</div>
             </div>
 
             <div className="mt-4 grid gap-3">
               <button
                 disabled={lines.length === 0}
                 onClick={() => printBill({ buyerName, shopName, lines, total })}
-                className="w-full rounded-xl bg-green-600 px-5 py-4 text-xl font-extrabold text-white hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-500/60 disabled:opacity-40 disabled:hover:bg-green-600"
+                className="w-full rounded-xl bg-lime-400 px-5 py-4 text-xl font-extrabold text-green-950 hover:bg-lime-300 focus:outline-none focus:ring-4 focus:ring-lime-300 disabled:opacity-40 disabled:hover:bg-lime-400"
               >
                 Print Bill
               </button>
@@ -243,20 +243,20 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
                 href={lines.length === 0 ? undefined : whatsappBillUrl({ buyerName, shopName, lines, total })}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full rounded-xl bg-green-800 px-5 py-4 text-center text-xl font-extrabold text-white hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500/60 aria-disabled:pointer-events-none aria-disabled:opacity-40"
+                className="w-full rounded-xl bg-green-700 px-5 py-4 text-center text-xl font-extrabold text-lime-100 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-lime-300 aria-disabled:pointer-events-none aria-disabled:opacity-40"
               >
                 Send WhatsApp Bill
               </a>
               <button
                 disabled={lines.length === 0}
                 onClick={() => setCart({})}
-                className="w-full rounded-xl border border-zinc-700 bg-zinc-950 px-5 py-4 text-xl font-extrabold hover:bg-zinc-900 disabled:opacity-40"
+                className="w-full rounded-xl border border-green-500 bg-green-950 px-5 py-4 text-xl font-extrabold hover:bg-green-900 disabled:opacity-40"
               >
                 Clear cart
               </button>
             </div>
 
-            <div className="mt-4 text-lg text-zinc-300">
+            <div className="mt-4 text-lg text-green-100">
               Tip: For rural use, keep 1 screen + big buttons + less typing.
             </div>
           </div>
