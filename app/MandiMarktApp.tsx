@@ -29,7 +29,7 @@ function printBill(opts: { shopName?: string; buyerName?: string; lines: CartLin
   const shop = (opts.shopName ?? "").trim();
   const date = new Date().toLocaleString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
 
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>MandiMarkt Bill</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;max-width:420px;margin:0 auto;padding:18px;color:#0d1117}.hdr{text-align:center;border-bottom:2px solid #15803d;padding-bottom:12px;margin-bottom:12px}.brand{font-size:26px;font-weight:900;color:#0d1117}.sub{margin-top:6px;font-size:11px;color:#666}.info{background:#f6f6f6;border:1px solid #eee;border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:12px}.ir{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px}.il{color:#555;font-weight:700}.iv{font-weight:800;text-align:right}table{width:100%;border-collapse:collapse}thead{background:#0d1117;color:#fff}thead th{padding:9px 10px;font-size:11px;font-weight:900;text-transform:uppercase}thead th:last-child{text-align:right}thead th:nth-child(2){text-align:center}.tot{background:#15803d;color:#fff}.tot td{padding:10px;font-size:15px;font-weight:900}.tot td:last-child{text-align:right;font-size:18px}.ftr{text-align:center;margin-top:14px;font-size:11px;color:#888;border-top:1px dashed #ddd;padding-top:10px}@media print{button{display:none!important}}</style></head><body><div class="hdr"><div class="brand">MandiMarkt</div><div class="sub">Simple bill</div></div><div class="info"><div class="ir"><span class="il">Buyer name</span><span class="iv">${buyer || "—"}</span></div><div class="ir"><span class="il">Shop</span><span class="iv">${shop || "—"}</span></div><div class="ir"><span class="il">Date</span><span class="iv">${date}</span></div></div><table><thead><tr><th style="text-align:left">Item</th><th>Qty</th><th>Amount</th></tr></thead><tbody>${rows}</tbody><tfoot><tr class="tot"><td colspan="2">TOTAL</td><td>₹${opts.total}</td></tr></tfoot></table><div class="ftr">Thank you.</div><script>window.onload=()=>window.print();</script></body></html>`;
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Mandi Markt Bill</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;max-width:420px;margin:0 auto;padding:18px;color:#0d1117}.hdr{text-align:center;border-bottom:2px solid #15803d;padding-bottom:12px;margin-bottom:12px}.brand{font-size:26px;font-weight:900;color:#0d1117}.sub{margin-top:6px;font-size:11px;color:#666}.info{background:#f6f6f6;border:1px solid #eee;border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:12px}.ir{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px}.il{color:#555;font-weight:700}.iv{font-weight:800;text-align:right}table{width:100%;border-collapse:collapse}thead{background:#0d1117;color:#fff}thead th{padding:9px 10px;font-size:11px;font-weight:900;text-transform:uppercase}thead th:last-child{text-align:right}thead th:nth-child(2){text-align:center}.tot{background:#15803d;color:#fff}.tot td{padding:10px;font-size:15px;font-weight:900}.tot td:last-child{text-align:right;font-size:18px}.ftr{text-align:center;margin-top:14px;font-size:11px;color:#888;border-top:1px dashed #ddd;padding-top:10px}@media print{button{display:none!important}}</style></head><body><div class="hdr"><div class="brand">Mandi Markt</div><div class="sub">Wholesale/Retail Bill</div></div><div class="info"><div class="ir"><span class="il">Buyer name</span><span class="iv">${buyer || "—"}</span></div><div class="ir"><span class="il">Shop</span><span class="iv">${shop || "—"}</span></div><div class="ir"><span class="il">Date</span><span class="iv">${date}</span></div></div><table><thead><tr><th style="text-align:left">Item</th><th>Qty</th><th>Amount</th></tr></thead><tbody>${rows}</tbody><tfoot><tr class="tot"><td colspan="2">TOTAL</td><td>₹${opts.total}</td></tr></tfoot></table><div class="ftr">Thank you.</div><script>window.onload=()=>window.print();</script></body></html>`;
 
   const w = window.open("", "_blank", "width=480,height=700");
   if (w) {
@@ -44,7 +44,7 @@ function whatsappBillUrl(opts: { shopName?: string; buyerName?: string; lines: C
   const lines = opts.lines
     .map((line, idx) => `${idx + 1}. ${line.name} x ${line.qty} = Rs. ${line.price * line.qty}`)
     .join("\n");
-  const text = `MandiMarkt Bill\nBuyer: ${buyer}\nShop: ${shop}\n\n${lines}\n\nTotal: Rs. ${opts.total}`;
+  const text = `Mandi Markt Bill\nBuyer: ${buyer}\nShop: ${shop}\n\n${lines}\n\nTotal: Rs. ${opts.total}`;
   return `https://wa.me/?text=${encodeURIComponent(text)}`;
 }
 
@@ -92,7 +92,7 @@ export default function MandiMarktApp({ initialProducts }: { initialProducts: Pr
       <div className="mx-auto max-w-6xl px-5 py-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-4xl font-extrabold tracking-tight text-lime-300">MandiMarkt</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-lime-300">Mandi Markt</h1>
             <p className="mt-1 text-xl text-green-100">Search -&gt; add -&gt; print bill.</p>
           </div>
 

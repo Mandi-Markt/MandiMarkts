@@ -40,7 +40,7 @@ async function HomeWithData() {
   if (error) {
     return (
       <div className="min-h-screen bg-green-950 text-green-50 px-6 py-10">
-        <h1 className="text-4xl font-extrabold text-lime-300">MandiMarkt</h1>
+        <h1 className="text-4xl font-extrabold text-lime-300">Mandi Markt</h1>
         <p className="mt-4 text-2xl text-lime-100 font-bold">Could not load products: {error.message}</p>
         <p className="mt-4 text-xl text-green-100">Check `.env.local` keys and your `products` table.</p>
       </div>

@@ -6,13 +6,13 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: "MandiMarkt",
-  description: "Simple grocery ordering for everyone.",
+  title: "Mandi Markt",
+  description: "Wholesale/Retail ordering app.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "MandiMarkt",
+    title: "Mandi Markt",
   },
   icons: {
     icon: [

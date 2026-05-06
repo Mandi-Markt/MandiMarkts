@@ -1,4 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 
 function normalizeSupabaseUrl(raw: string) {
   const trimmed = raw.trim();
@@ -15,6 +15,9 @@ export function supabaseBrowser() {
   }
 
   const url = normalizeSupabaseUrl(urlRaw);
-  return createClient(url, key);
+  return createSupabaseClient(url, key);
 }
+
+// Alias for compatibility
+export const createClient = supabaseBrowser;
 
