@@ -1,3 +1,4 @@
+// Vercel deployment fix - App Router entrypoint
 import MandiMarktApp from "@/app/MandiMarktApp";
 import { supabaseServer } from "@/src/supabase/server";
 
